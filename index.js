@@ -3,10 +3,11 @@ const CORS=require('cors');
 const {connection}=require("./Config/db");
 const {userRouter} = require("./Routes/user.route");
 const {doctorRouter}=require("./Routes/doctor.route");
-const { auth } = require("./Middlwares/auth.middleware");
+// const { auth } = require("./Middlwares/auth.middleware");
 require('dotenv').config()
 
 const PORT=process.env.port || 3300;
+
 const app=express();
 
 app.use(express.json());
@@ -16,7 +17,7 @@ app.use(CORS());
 app.use("/", userRouter);
 app.use("/doctor", doctorRouter);
 
-app.use(auth)
+// app.use(auth)
 
 app.get('/', (req,res) => {
     res.send('Welcome To Masai Hospital App.')

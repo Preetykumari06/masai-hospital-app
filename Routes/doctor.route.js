@@ -4,7 +4,7 @@ const { Router } = require('express');
 const doctorRouter = Router();
 const {auth}=require("../Middlwares/auth.middleware")
 
-// http://localhost:4000/doctor/appointments
+// http://localhost:3300/doctor/appointments
 
 
 // add
