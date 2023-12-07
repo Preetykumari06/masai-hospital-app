@@ -1,6 +1,7 @@
 const mongoose=require("mongoose");
+require('dotenv').config()
 
-const connection=mongoose.connect("mongodb+srv://preetysingh46231:preetysingh@cluster0.muxtagj.mongodb.net/Masai-Hospital-AppMock6?retryWrites=true&w=majority");
+const connection=mongoose.connect(process.env.mongoURL);
 
 
 module.exports={

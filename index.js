@@ -4,7 +4,9 @@ const {connection}=require("./Config/db");
 const {userRouter} = require("./Routes/user.route");
 const {doctorRouter}=require("./Routes/doctor.route");
 const { auth } = require("./Middlwares/auth.middleware");
+require('dotenv').config()
 
+const PORT=process.env.port || 3300;
 const app=express();
 
 app.use(express.json());
@@ -23,7 +25,7 @@ app.get('/', (req,res) => {
 
 
 
-app.listen(4000, async() => {
+app.listen(PORT, async() => {
     try{
         await connection;
         console.log('Connected to the DB.')
@@ -31,6 +33,6 @@ app.listen(4000, async() => {
        console.log(error);
        console.log('Somthing went to wrong while connected to the DB.')
     }
-    console.log('Server is running on 4000')
+    console.log(`Server is running on ${process.env.PORT}`)
    
 })
