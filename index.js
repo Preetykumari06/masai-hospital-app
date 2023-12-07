@@ -2,7 +2,8 @@ const express=require("express");
 const CORS=require('cors');
 const {connection}=require("./Config/db");
 const {userRouter} = require("./Routes/user.route");
-const {doctorRouter}=require("./Routes/doctor.route")
+const {doctorRouter}=require("./Routes/doctor.route");
+const { auth } = require("./Middlwares/auth.middleware");
 
 const app=express();
 
@@ -13,6 +14,7 @@ app.use(CORS());
 app.use("/", userRouter);
 app.use("/doctor", doctorRouter);
 
+app.use(auth)
 
 app.get('/', (req,res) => {
     res.send('Welcome To Masai Hospital App.')

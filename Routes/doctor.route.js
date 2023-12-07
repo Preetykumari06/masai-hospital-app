@@ -7,9 +7,8 @@ const {auth}=require("../Middlwares/auth.middleware")
 // http://localhost:4000/doctor/appointments
 
 
-
 // add
-doctorRouter.post("/appointments", async (req,res) => {
+doctorRouter.post("/appointments", auth,async (req,res) => {
 try {
     const post = new DoctorModel(req.body);
     await post.save();
@@ -22,7 +21,7 @@ try {
 
 
 // all
-doctorRouter.get("/", async (req,res) => {
+doctorRouter.get("/", auth,async (req,res) => {
    try {
      const {specialization, sortByDate, search} = req.query
       let filter = {}
@@ -54,7 +53,7 @@ doctorRouter.get("/", async (req,res) => {
 
 
 // update
-doctorRouter.patch("/appointments/:id", async (req,res) => {
+doctorRouter.patch("/appointments/:id", auth,async (req,res) => {
     try {
         await DoctorModel.findByIdAndUpdate(req.params.id, req.body);
         res.status(200).json({ message: 'Doctor Details updated successfully' });
@@ -67,7 +66,7 @@ doctorRouter.patch("/appointments/:id", async (req,res) => {
 
 
 // delete
-doctorRouter.delete("/appointments/:id", async (req,res) => {
+doctorRouter.delete("/appointments/:id", auth,async (req,res) => {
     try {
         await DoctorModel.findByIdAndDelete(req.params.id);
         res.status(200).json({ message: 'Doctor Details successfully' });
