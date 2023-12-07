@@ -2,8 +2,8 @@ const express=require("express")
 const {UserModel}=require("../Models/user.model");
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
-let SECRAT_KEY="masai";
 
+require('dotenv').config()
 const userRouter = express.Router();
 
 userRouter.post('/signup', async (req, res) => {
@@ -83,7 +83,7 @@ userRouter.post('/login', async (req, res) => {
             })
         }
 
-        const token = jwt.sign({ UserId: userPresent._id }, SECRAT_KEY, { expiresIn: '24hr' })
+        const token = jwt.sign({ UserId: userPresent._id }, process.env.SECREAT_KEY, { expiresIn: '24hr' })
 
         return res.status(201).send({
             isError: false,
